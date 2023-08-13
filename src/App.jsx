@@ -5,7 +5,10 @@ import './App.css';
 import Header from './Components/Header';
 import MenuContainer from './Components/MenuContainer';
 import { AccountBalanceWalletRounded, Chat, Favorite, HomeRounded, Settings, SummarizeRounded } from '@mui/icons-material';
-
+import BannerName from './Components/BannerName';
+import SubMenuContainer from './Components/SubMenuContainer';
+import MenuCard from './Components/MenuCard';
+import { MenuItems,Items } from './Components/Data';
 
 function App() {
  useEffect(()=>{
@@ -18,6 +21,18 @@ function App() {
     })
   }
   menuLi.forEach((n)=>n.addEventListener('click',setMenuActive));
+
+
+  const menuCard = document
+  .querySelector(".rowContainer")
+  .querySelectorAll(".rowMenuCard");
+
+function setMenuCardActive() {
+  menuCard.forEach((n) => n.classList.remove("active"));
+  this.classList.add("active");
+}
+
+menuCard.forEach((n) => n.addEventListener("click", setMenuCardActive));
  },[])
 
   return (
@@ -26,10 +41,31 @@ function App() {
         <Header/>
         <main>
           <div className='mainContainer'>
+               <div className='banner'>
+                 <BannerName name={'Raj'} discount={'50%'} link={'#'} />
+                 <img
+              src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fdelivery.png?alt=media&token=69b9823d-96df-452a-bd4e-14d27a4cc337"
+              alt=""
+              className="deliveryPic"
+            />
+               </div>
+               <div className="dishContainer">
+                <div className="menuCard">
+                  <SubMenuContainer />
+                </div>
+                <div className="rowContainer">
+                 {MenuItems && MenuItems.map((data)=>(
+                  <div key={data.id}>
+                    <MenuCard imgSrc={data.imgSrc} name={data.name} isActive={data.id==1?true:false}/>
+                  </div>
+                  ))} 
+                </div>
+            </div>
+          </div>
             <div className='rightMenu'>
 
             </div>
-          </div>
+          
         </main>
         <div className='bottomMenu'>
           <ul id="menu">
