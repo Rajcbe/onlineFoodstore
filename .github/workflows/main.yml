@@ -1,0 +1,14 @@
+name: On-Demand APK Generation
+
+on:
+  workflow_dispatch:
+    inputs:
+      increment_version:
+        description: "Specify version increment (patch, minor, major)"
+        required: false
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+  
